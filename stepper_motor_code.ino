@@ -39,7 +39,8 @@ void loop() {
 
 
 void moveMotor(float stepSize, float numSteps) {
-  float steps_mm = 256.0;
+  float steps_mm = 256.0; // this is a cm my bad
+  // so a mm would be 25.6 i  think
 	// Calculate the number of steps needed for the specified distance
   for(int i = 0; i < numSteps; i++){
     float stepsToMove = stepSize * steps_mm;
