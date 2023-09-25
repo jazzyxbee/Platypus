@@ -8,8 +8,8 @@ Stepper myStepper(stepsPerRevolution, 2, 3, 4, 5);  // Forwards Direction
 Stepper myStepperBackwards(stepsPerRevolution, 5, 2, 3, 4); // Backwards Direction
 
 void setup() {
-  myStepperBackwards.setSpeed(10);
-  myStepper.setSpeed(10);
+  myStepperBackwards.setSpeed(5);
+  myStepper.setSpeed(5);
   Serial.begin(9600); // initialize the serial port
   pinMode(cameraTriggerPin, OUTPUT);
 }
@@ -25,7 +25,7 @@ void loop() {
    stepSize = Serial.parseFloat(); // Read user input
    while (Serial.available()) Serial.read(); // Clear input buffer
 
-  Serial.println("Enter number of steps: ");
+  Serial.println("Enter number of steps (maximum 7?): ");
   while (!Serial.available()) {}  // Wait for user input
   numSteps = Serial.parseFloat(); // Read user input
   while (Serial.available()) Serial.read(); // Clear input buffer
@@ -36,7 +36,7 @@ void loop() {
   while (Serial.available()) Serial.read(); // Clear input buffer
   
   // Move the stepper motor based on user input
-  if(directions == 1){ 
+  if(directions == 1){ // && numSteps < 7){ 
   moveMotor(stepSize, numSteps);
   }else{
      moveMotorOtherWay(stepSize, numSteps);
@@ -50,7 +50,7 @@ void loop() {
 
 
 void moveMotor(float stepSize, float numSteps) {
-  float steps_mm = 256.0; // this is a cm my bad
+  float steps_mm = 2048.0; // this is a cm my bad
   // so a mm would be 25.6 i  think
   // Calculate the number of steps needed for the specified distance
   for(int i = 0; i < numSteps; i++){
@@ -65,7 +65,7 @@ void moveMotor(float stepSize, float numSteps) {
 }
 
 void moveMotorOtherWay(float stepSize, float numSteps) {
-  float steps_mm = 256.0; // this is a cm my bad
+  float steps_mm = 2048.0; // this is a cm my bad
   // so a mm would be 25.6 i  think
   // Calculate the number of steps needed for the specified distance
   for(int i = 0; i < numSteps; i++){
