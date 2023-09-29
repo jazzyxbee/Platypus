@@ -1,7 +1,7 @@
 #include <Stepper.h>
 
 const int stepsPerRevolution = 2048; 
-const int cameraTriggerPin = 12; 
+const int cameraTriggerPin = 12; // 13?
 
 Stepper myStepperBackwards(stepsPerRevolution, 2, 3, 4, 5);  // Forwards Direction
 Stepper myStepperForwards(stepsPerRevolution, 5, 2, 3, 4); // Backwards Direction
